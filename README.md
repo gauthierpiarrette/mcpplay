@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://gauthierpiarrette.github.io/mcpplay/">Documentation</a> • <a href="https://gauthierpiarrette.github.io/mcpplay/getting-started/">Getting Started</a> • <a href="https://github.com/gauthierpiarrette/mcpplay/issues">Issues</a>
+  <a href="https://mcpplay.dev">Documentation</a> • <a href="https://mcpplay.dev/getting-started/">Getting Started</a> • <a href="https://github.com/gauthierpiarrette/mcpplay/issues">Issues</a>
 </p>
 
 <p align="center">
