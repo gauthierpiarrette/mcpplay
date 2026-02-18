@@ -10,7 +10,7 @@ mcpplay run server.py
 ```
 
 <p align="center">
-  <video src="../assets/mcpplay_overview.mp4" autoplay controls loop muted playsinline width="800" style="border-radius: 12px;"></video>
+  <img src="assets/mcpplay_demo.png" alt="mcpplay screenshot" width="800" style="border-radius: 12px;" />
 </p>
 
 ---
