@@ -1,6 +1,6 @@
 [project]
 site_name = "mcpplay"
-site_url = "https://gauthierpiarrette.github.io/mcpplay"
+site_url = "https://mcpplay.dev"
 site_description = "The Python-native playground for MCP servers"
 repo_url = "https://github.com/gauthierpiarrette/mcpplay"
 repo_name = "gauthierpiarrette/mcpplay"
