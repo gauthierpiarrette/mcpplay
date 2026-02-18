@@ -62,15 +62,6 @@ mcpplay run server.py --env API_KEY=xxx  # Pass env vars to server
 - **Hot reload** - edit your server, mcpplay restarts it. Session and timeline preserved.
 - **Localhost-only** - bound to `127.0.0.1` with Origin validation. No remote exposure.
 
-## How It Works
-
-```
-Browser UI  ←→  mcpplay (Python proxy)  ←→  Your MCP Server
-  (Svelte)      (uvicorn + WebSocket)        (stdio)
-```
-
-mcpplay spawns your server as a child process, connects via stdio, and proxies everything through a WebSocket to the browser. Executions are logged to a local SQLite database.
-
 ## Comparison
 
 | | **mcpplay** | MCP Inspector | MCPJam Inspector |
