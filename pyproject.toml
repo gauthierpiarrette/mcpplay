@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcpplay"
+dynamic = ["version"]
+description = "The Python-native playground for MCP servers"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{ name = "Gauthier Piarrette" }]
+keywords = ["mcp", "mcp server", "mcp client", "model context protocol", "llm", "agent", "mcp-tools", "fastmcp", "playground", "developer-tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Debuggers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "mcp>=1.0",
+    "uvicorn[standard]>=0.20",
+    "starlette>=0.27",
+    "watchfiles>=0.20",
+    "click>=8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/gauthierpiarrette/mcpplay"
+Documentation = "https://gauthierpiarrette.github.io/mcpplay/"
+Repository = "https://github.com/gauthierpiarrette/mcpplay"
+Issues = "https://github.com/gauthierpiarrette/mcpplay/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23,<1",
+    "pytest-mock>=3.12",
+    "httpx>=0.27",
+    "ruff>=0.4",
+    "taskipy>=1.12",
+]
+
+[project.scripts]
+mcpplay = "mcpplay.cli:main"
+
+[tool.hatch.version]
+path = "src/mcpplay/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcpplay"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/mcpplay/static" = "mcpplay/static"
+
+[tool.taskipy.tasks]
+lint = "ruff check src/ tests/"
+format = "ruff format src/ tests/"
+test = "pytest tests/ -v"
+check = "ruff check src/ tests/ && ruff format --check src/ tests/ && pytest tests/ -v"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
