@@ -1,0 +1,75 @@
+[project]
+site_name = "mcpplay"
+site_url = "https://gauthierpiarrette.github.io/mcpplay"
+site_description = "The Python-native playground for MCP servers"
+repo_url = "https://github.com/gauthierpiarrette/mcpplay"
+repo_name = "gauthierpiarrette/mcpplay"
+
+nav = [
+  {"Home" = "index.md"},
+  {"Getting Started" = [
+    "getting-started/installation.md",
+    "getting-started/quickstart.md",
+    "getting-started/demo-server.md",
+  ]},
+  {"Usage" = [
+    "usage/running-servers.md",
+    "usage/forms.md",
+    "usage/timeline.md",
+    "usage/hot-reload.md",
+  ]},
+  {"Reference" = [
+    "reference/cli.md",
+    "reference/configuration.md",
+  ]},
+  {"Help" = [
+    "help/troubleshooting.md",
+    "help/contributing.md",
+  ]},
+]
+
+[project.theme]
+name = "material"
+logo = "assets/logo.svg"
+favicon = "assets/logo.svg"
+features = [
+  "navigation.instant",
+  "navigation.tabs",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.indexes",
+  "content.code.copy",
+  "search.suggest",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "black"
+accent = "yellow"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "black"
+accent = "yellow"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to dark mode"
+
+[project.extra]
+social = [
+  {icon = "fontawesome/brands/github", link = "https://github.com/gauthierpiarrette/mcpplay"},
+  {icon = "fontawesome/brands/python", link = "https://pypi.org/project/mcpplay/"},
+]
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
