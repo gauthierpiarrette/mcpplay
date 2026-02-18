@@ -1,0 +1,103 @@
+<p align="center">
+  <img src="docs/logo.svg" alt="mcpplay" width="80" />
+</p>
+
+<h1 align="center">mcpplay</h1>
+
+<p align="center">
+    <em>The <code>FastAPI /docs</code> experience, for MCP servers.</em>
+</p>
+
+<p align="center">
+    <a href="https://pypi.org/project/mcpplay/"><img src="https://img.shields.io/pypi/v/mcpplay?color=blue" alt="PyPI version" /></a>
+    <a href="https://pypi.org/project/mcpplay/"><img src="https://img.shields.io/pypi/pyversions/mcpplay" alt="Python versions" /></a>
+    <a href="https://github.com/gauthierpiarrette/mcpplay/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gauthierpiarrette/mcpplay" alt="License" /></a>
+</p>
+
+<p align="center">
+  <a href="https://gauthierpiarrette.github.io/mcpplay/">Documentation</a> • <a href="https://gauthierpiarrette.github.io/mcpplay/getting-started/">Getting Started</a> • <a href="https://github.com/gauthierpiarrette/mcpplay/issues">Issues</a>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/822c7871-3d89-4133-9ec3-59bfee697ff5" alt="mcpplay in action" width="800" />
+</p>
+
+**mcpplay** gives you a browser-based playground for any [MCP](https://modelcontextprotocol.io) server. One command, and you get auto-generated forms, live results, and a full execution timeline.
+
+## Installation
+
+```bash
+pip install mcpplay
+mcpplay demo
+```
+
+Your browser opens to `http://localhost:8321`. That's it!
+
+<p align="center">
+  <img src="docs/assets/mcpplay_demo.png" alt="mcpplay screenshot" width="800" />
+</p>
+
+### Point it at your own server
+
+```bash
+mcpplay run server.py
+mcpplay run --command "node server.js"
+mcpplay run --command "uvx my-mcp-server"
+```
+
+### Options
+
+```bash
+mcpplay run server.py --port 9000        # Custom port (default: 8321)
+mcpplay run server.py --no-open          # Don't auto-open browser
+mcpplay run server.py --no-reload        # Disable hot reload
+mcpplay run server.py --env API_KEY=xxx  # Pass env vars to server
+```
+
+## Features
+
+- **Schema-aware forms** - auto-generated from your tool's JSON Schema, with enums, nested objects, arrays, and defaults.
+- **Live execution** - run tools and see structured results instantly.
+- **Persistent timeline** - every call logged with inputs, outputs, and latency. Replay with one click.
+- **Hot reload** - edit your server, mcpplay restarts it. Session and timeline preserved.
+- **Localhost-only** - bound to `127.0.0.1` with Origin validation. No remote exposure.
+
+## How It Works
+
+```
+Browser UI  ←→  mcpplay (Python proxy)  ←→  Your MCP Server
+  (Svelte)      (uvicorn + WebSocket)        (stdio)
+```
+
+mcpplay spawns your server as a child process, connects via stdio, and proxies everything through a WebSocket to the browser. Executions are logged to a local SQLite database.
+
+## Comparison
+
+| | **mcpplay** | MCP Inspector | MCPJam Inspector |
+|---|---|---|---|
+| **Install** | `pip install` | `npx` (Node required) | Docker |
+| **Python native** | ✅ | ❌ | ❌ |
+| **Form generation** | Full JSON Schema | Basic inputs | Basic inputs |
+| **Hot reload** | ✅ | ❌ | ❌ |
+| **Execution timeline** | Persistent, replayable | Log | Log |
+
+## Development
+
+```bash
+git clone https://github.com/gauthierpiarrette/mcpplay
+cd mcpplay
+
+# Python backend
+uv sync --dev
+uv run pytest
+
+# Frontend (Svelte)
+cd frontend
+npm install
+npm run dev      # Dev server with HMR
+npm run build    # Build to src/mcpplay/static/
+```
+
+## License
+
+Apache 2.0
