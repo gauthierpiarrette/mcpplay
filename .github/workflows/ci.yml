@@ -43,3 +43,9 @@ jobs:
 
       - name: Run tests
         run: cd frontend && npm test
+
+  CI:
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    steps:
+      - run: echo "All checks passed"
