@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+    <a href="https://github.com/gauthierpiarrette/mcpplay/actions/workflows/ci.yml"><img src="https://github.com/gauthierpiarrette/mcpplay/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
     <a href="https://pypi.org/project/mcpplay/"><img src="https://img.shields.io/pypi/v/mcpplay?color=blue" alt="PyPI version" /></a>
     <a href="https://pypi.org/project/mcpplay/"><img src="https://img.shields.io/pypi/pyversions/mcpplay" alt="Python versions" /></a>
     <a href="https://github.com/gauthierpiarrette/mcpplay/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gauthierpiarrette/mcpplay" alt="License" /></a>
@@ -19,10 +20,16 @@
 </p>
 
 <p align="center">
+  <strong>⚡ Run your MCP server → instantly get an interactive UI.</strong>
+</p>
+
+<p align="center">
   <img src="https://github.com/user-attachments/assets/822c7871-3d89-4133-9ec3-59bfee697ff5" alt="mcpplay in action" width="800" />
 </p>
 
-**mcpplay** gives you a browser-based playground for any [MCP](https://modelcontextprotocol.io) server. One command, and you get auto-generated forms, live results, and a full execution timeline.
+**mcpplay** gives you a browser-based playground for [MCP](https://modelcontextprotocol.io)-compliant servers. One command, and you get auto-generated forms, live results, and a full execution timeline.
+
+Built for [FastMCP](https://github.com/jlowin/fastmcp) workflows. Works with any MCP-compliant implementation.
 
 ## Installation
 
@@ -60,7 +67,7 @@ mcpplay run server.py --env API_KEY=xxx  # Pass env vars to server
 - **Live execution** - run tools and see structured results instantly.
 - **Persistent timeline** - every call logged with inputs, outputs, and latency. Replay with one click.
 - **Hot reload** - edit your server, mcpplay restarts it. Session and timeline preserved.
-- **Localhost-only** - bound to `127.0.0.1` with Origin validation. No remote exposure.
+- **Local-first** - runs on localhost (`127.0.0.1`) with Origin validation. No remote exposure by default.
 
 ## Comparison
 
