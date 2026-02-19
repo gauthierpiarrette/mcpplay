@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/822c7871-3d89-4133-9ec3-59bfee697ff5" alt="mcpplay in action" width="800" />
+  <video src="https://github.com/user-attachments/assets/822c7871-3d89-4133-9ec3-59bfee697ff5" alt="mcpplay in action" width="800" autoplay loop muted playsinline></video>
 </p>
 
 **mcpplay** gives you a browser-based playground for [MCP](https://modelcontextprotocol.io)-compliant servers. One command, and you get auto-generated forms, live results, and a full execution timeline.
