@@ -34,7 +34,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "lucide-svelte": "^0.570.0",
+    "lucide-svelte": "^0.575.0",
     "marked": "^15.0.12"
   }
 }
