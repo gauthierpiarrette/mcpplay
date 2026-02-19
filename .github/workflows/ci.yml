@@ -41,6 +41,9 @@ jobs:
       - name: Install dependencies
         run: cd frontend && npm ci
 
+      - name: Lint & format check
+        run: cd frontend && npm run lint
+
       - name: Run tests
         run: cd frontend && npm test
 

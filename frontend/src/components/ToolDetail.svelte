@@ -339,9 +339,7 @@
         class="flex h-full min-h-[200px] flex-col items-center justify-center rounded-xl border border-dashed text-center text-muted-foreground"
       >
         <Play size={24} class="mb-2 opacity-30" />
-        <p class="text-xs">
-          Results will appear here after execution
-        </p>
+        <p class="text-xs">Results will appear here after execution</p>
         <p class="mt-1 text-[10px] opacity-60">
           Press {isMac ? "\u2318" : "Ctrl"}+Enter to execute
         </p>

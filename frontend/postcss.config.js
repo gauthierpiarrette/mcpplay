@@ -1,7 +1,5 @@
-import tailwind from '@tailwindcss/postcss';
+import tailwind from "@tailwindcss/postcss";
 
 export default {
-  plugins: [
-    tailwind(),
-  ],
-}
+  plugins: [tailwind()],
+};

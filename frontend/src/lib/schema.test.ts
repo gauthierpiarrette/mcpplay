@@ -37,11 +37,15 @@ describe("getFieldType", () => {
   });
 
   it("returns 'oneOf' when oneOf is present", () => {
-    expect(getFieldType({ oneOf: [{ type: "string" }, { type: "number" }] })).toBe("oneOf");
+    expect(
+      getFieldType({ oneOf: [{ type: "string" }, { type: "number" }] }),
+    ).toBe("oneOf");
   });
 
   it("returns 'anyOf' when anyOf is present", () => {
-    expect(getFieldType({ anyOf: [{ type: "string" }, { type: "number" }] })).toBe("anyOf");
+    expect(
+      getFieldType({ anyOf: [{ type: "string" }, { type: "number" }] }),
+    ).toBe("anyOf");
   });
 
   it("returns 'unknown' for empty schema", () => {
@@ -49,7 +53,9 @@ describe("getFieldType", () => {
   });
 
   it("enum takes priority over oneOf", () => {
-    expect(getFieldType({ enum: ["a"], oneOf: [{ type: "string" }] })).toBe("enum");
+    expect(getFieldType({ enum: ["a"], oneOf: [{ type: "string" }] })).toBe(
+      "enum",
+    );
   });
 });
 
@@ -75,7 +81,9 @@ describe("getDefaultValue", () => {
   });
 
   it("returns first enum value for enum without default", () => {
-    expect(getDefaultValue({ enum: ["celsius", "fahrenheit"] })).toBe("celsius");
+    expect(getDefaultValue({ enum: ["celsius", "fahrenheit"] })).toBe(
+      "celsius",
+    );
   });
 
   it("returns default 0 for number", () => {

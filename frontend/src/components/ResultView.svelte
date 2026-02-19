@@ -153,6 +153,7 @@
           </div>
         {:else if isMarkdown && viewMode === "rich"}
           <div class="prose-result">
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -- sanitized by sanitize() -->
             {@html renderMarkdown(block.text)}
           </div>
         {:else}
@@ -173,7 +174,11 @@
     {:else}
       <div class="p-4">
         <pre
-          class="overflow-x-auto whitespace-pre-wrap break-words text-xs font-mono text-muted-foreground">{JSON.stringify(block, null, 2)}</pre>
+          class="overflow-x-auto whitespace-pre-wrap break-words text-xs font-mono text-muted-foreground">{JSON.stringify(
+            block,
+            null,
+            2,
+          )}</pre>
       </div>
     {/if}
   {/each}

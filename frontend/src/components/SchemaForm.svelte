@@ -32,7 +32,9 @@
   {/each}
 
   {#if propertyNames.length === 0}
-    <div class="flex flex-col items-center justify-center rounded-lg border border-dashed py-10 text-center text-muted-foreground bg-muted/30">
+    <div
+      class="flex flex-col items-center justify-center rounded-lg border border-dashed py-10 text-center text-muted-foreground bg-muted/30"
+    >
       <FileQuestion class="mb-2 h-8 w-8 opacity-20" />
       <p class="text-sm italic">This tool takes no parameters.</p>
     </div>

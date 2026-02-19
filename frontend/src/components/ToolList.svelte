@@ -71,19 +71,25 @@
         <button
           onclick={() => onSelect(tool)}
           onpointerenter={() => (focusedIndex = i)}
-          class={`group flex w-full flex-col items-start gap-1 rounded-md p-3 text-sm transition-all hover:bg-accent hover:text-accent-foreground ${selectedTool?.name === tool.name ? 'bg-accent text-accent-foreground shadow-sm ring-1 ring-border' : i === focusedIndex ? 'bg-muted/50' : 'text-muted-foreground'}`}
+          class={`group flex w-full flex-col items-start gap-1 rounded-md p-3 text-sm transition-all hover:bg-accent hover:text-accent-foreground ${selectedTool?.name === tool.name ? "bg-accent text-accent-foreground shadow-sm ring-1 ring-border" : i === focusedIndex ? "bg-muted/50" : "text-muted-foreground"}`}
         >
           <div class="flex w-full items-center justify-between">
             <div class="flex items-center gap-2">
-              <div class={`flex h-6 w-6 items-center justify-center rounded border bg-background/50 ${selectedTool?.name === tool.name ? 'border-primary/20' : 'border-border'}`}>
+              <div
+                class={`flex h-6 w-6 items-center justify-center rounded border bg-background/50 ${selectedTool?.name === tool.name ? "border-primary/20" : "border-border"}`}
+              >
                 <Command size={12} />
               </div>
-              <span class={`font-semibold ${selectedTool?.name === tool.name ? 'text-foreground' : 'text-muted-foreground'}`}>
+              <span
+                class={`font-semibold ${selectedTool?.name === tool.name ? "text-foreground" : "text-muted-foreground"}`}
+              >
                 {tool.name}
               </span>
             </div>
             {#if count > 0}
-              <span class="rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-muted-foreground">
+              <span
+                class="rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-muted-foreground"
+              >
                 {count}
               </span>
             {/if}
@@ -106,7 +112,9 @@
       {/each}
 
       {#if filtered.length === 0}
-        <div class="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
+        <div
+          class="flex flex-col items-center justify-center py-8 text-center text-muted-foreground"
+        >
           <Package class="mb-2 h-8 w-8 opacity-20" />
           <p class="text-xs">
             {tools.length === 0 ? "No tools available" : "No matching tools"}
@@ -116,7 +124,9 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-between border-t bg-muted/20 px-4 py-2 text-xs text-muted-foreground">
+  <div
+    class="flex items-center justify-between border-t bg-muted/20 px-4 py-2 text-xs text-muted-foreground"
+  >
     <span>{tools.length} tool{tools.length !== 1 ? "s" : ""}</span>
     <span>Local</span>
   </div>

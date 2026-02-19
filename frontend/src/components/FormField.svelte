@@ -92,32 +92,40 @@
 
 <div class="group flex flex-col gap-2">
   {#if fieldType !== "object"}
-    <label class="flex items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for={name}>
+    <label
+      class="flex items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      for={name}
+    >
       <span class="font-mono text-foreground">{name}</span>
       {#if required}
         <span class="text-destructive">*</span>
       {/if}
       {#if schema.type}
-        <span class="rounded bg-muted px-1.5 py-0.5 text-[10px] uppercase text-muted-foreground">
+        <span
+          class="rounded bg-muted px-1.5 py-0.5 text-[10px] uppercase text-muted-foreground"
+        >
           {schema.type}
         </span>
       {/if}
     </label>
 
     {#if description}
-      <div class="text-[12px] text-muted-foreground opacity-80">{description}</div>
+      <div class="text-[12px] text-muted-foreground opacity-80">
+        {description}
+      </div>
     {/if}
   {/if}
 
   {#if fieldType === "enum"}
     <div class="relative">
       <select id={name} onchange={handleSelectChange} class={inputClass}>
-        {#each schema.enum ?? [] as opt, i}
-          <option value={String(opt)} selected={value === opt}>{String(opt)}</option>
+        {#each schema.enum ?? [] as opt}
+          <option value={String(opt)} selected={value === opt}
+            >{String(opt)}</option
+          >
         {/each}
       </select>
     </div>
-
   {:else if fieldType === "boolean"}
     <div class="flex items-center space-x-2">
       <input
@@ -127,27 +135,36 @@
         checked={value === true}
         onchange={handleInput}
       />
-      <label for={name} class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+      <label
+        for={name}
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
         {value ? "true" : "false"}
       </label>
     </div>
-
   {:else if fieldType === "number" || fieldType === "integer"}
     <input
       type="number"
       id={name}
       class={inputClass}
       value={value ?? ""}
-      placeholder={schema.default !== undefined ? `Default: ${schema.default}` : ""}
+      placeholder={schema.default !== undefined
+        ? `Default: ${schema.default}`
+        : ""}
       min={schema.minimum}
       max={schema.maximum}
       step={fieldType === "integer" ? 1 : "any"}
       oninput={handleInput}
     />
-
   {:else if fieldType === "string"}
     {#if schema.format === "date"}
-      <input type="date" id={name} class={inputClass} value={value ?? ""} oninput={handleInput} />
+      <input
+        type="date"
+        id={name}
+        class={inputClass}
+        value={value ?? ""}
+        oninput={handleInput}
+      />
     {:else if schema.format === "uri"}
       <input
         type="url"
@@ -162,7 +179,9 @@
         id={name}
         class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         value={value ?? ""}
-        placeholder={schema.default !== undefined ? `Default: ${schema.default}` : ""}
+        placeholder={schema.default !== undefined
+          ? `Default: ${schema.default}`
+          : ""}
         rows="4"
         oninput={handleInput}
       ></textarea>
@@ -172,16 +191,17 @@
         id={name}
         class={inputClass}
         value={value ?? ""}
-        placeholder={schema.default !== undefined ? `Default: ${schema.default}` : ""}
+        placeholder={schema.default !== undefined
+          ? `Default: ${schema.default}`
+          : ""}
         minlength={schema.minLength}
         maxlength={schema.maxLength}
         oninput={handleInput}
       />
     {/if}
-
   {:else if fieldType === "object"}
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-      <button 
+      <button
         class="flex w-full items-center gap-2 border-b bg-muted/20 px-4 py-2 text-left text-sm font-medium hover:bg-muted/40"
         onclick={() => (collapsed = !collapsed)}
       >
@@ -196,7 +216,7 @@
           <span class="text-xs text-destructive">*</span>
         {/if}
       </button>
-      
+
       {#if !collapsed}
         <div class="flex flex-col gap-4 p-4">
           {#if description}
@@ -214,23 +234,27 @@
         </div>
       {/if}
     </div>
-
   {:else if fieldType === "array"}
     <div class="space-y-2 rounded-lg border bg-muted/10 p-3">
       <div class="flex items-center justify-between">
-         <span class="text-xs font-semibold uppercase text-muted-foreground">Array Items</span>
-         <button 
+        <span class="text-xs font-semibold uppercase text-muted-foreground"
+          >Array Items</span
+        >
+        <button
           class="inline-flex h-6 items-center gap-1 rounded-full border bg-background px-2 text-[10px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
           onclick={addArrayItem}
         >
           <Plus size={10} /> Add Item
         </button>
       </div>
-     
+
       <div class="space-y-2">
         {#each arrayItems as item, i (i)}
           <div class="flex items-start gap-2">
-            <span class="mt-2 font-mono text-xs text-muted-foreground min-w-[20px] text-right">[{i}]</span>
+            <span
+              class="mt-2 font-mono text-xs text-muted-foreground min-w-[20px] text-right"
+              >[{i}]</span
+            >
             <div class="flex-1">
               {#if schema.items?.type === "object"}
                 <FormField
@@ -244,30 +268,35 @@
                   type="text"
                   class={inputClass}
                   value={item ?? ""}
-                  oninput={(e) => updateArrayItem(i, (e.target as HTMLInputElement).value)}
+                  oninput={(e) =>
+                    updateArrayItem(i, (e.target as HTMLInputElement).value)}
                 />
               {/if}
             </div>
-            <button 
+            <button
               class="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive hover:text-destructive-foreground"
-              onclick={() => removeArrayItem(i)} 
+              onclick={() => removeArrayItem(i)}
               title="Remove"
             >
               <X size={14} />
             </button>
           </div>
         {/each}
-        
+
         {#if arrayItems.length === 0}
-          <div class="py-2 text-center text-xs italic text-muted-foreground">Empty array</div>
+          <div class="py-2 text-center text-xs italic text-muted-foreground">
+            Empty array
+          </div>
         {/if}
       </div>
     </div>
-
   {:else if fieldType === "oneOf" || fieldType === "anyOf"}
     <div class="rounded-md border p-4">
       <div class="mb-4">
-        <label class="mb-2 block text-xs font-medium text-muted-foreground" for={`${name}_variant_select`}>Select Type Variant</label>
+        <label
+          class="mb-2 block text-xs font-medium text-muted-foreground"
+          for={`${name}_variant_select`}>Select Type Variant</label
+        >
         <select
           id={`${name}_variant_select`}
           class={inputClass}
@@ -288,19 +317,20 @@
           <FormField
             name={`${name}_variant`}
             schema={unionOptions[selectedVariant]}
-            value={value}
+            {value}
             {onchange}
           />
         </div>
       {/if}
     </div>
-
   {:else}
     <!-- Fallback: raw JSON input -->
     <textarea
       id={name}
       class="flex min-h-[60px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm font-mono shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-      value={typeof value === "string" ? value : JSON.stringify(value ?? "", null, 2)}
+      value={typeof value === "string"
+        ? value
+        : JSON.stringify(value ?? "", null, 2)}
       rows="3"
       oninput={(e) => {
         const text = (e.target as HTMLTextAreaElement).value;
