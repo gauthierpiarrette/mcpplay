@@ -2,7 +2,7 @@
   import type { TimelineEntry, ToolDef } from "../lib/types";
   import TimelineEntryComponent from "./TimelineEntry.svelte";
   import { Search, Filter, History, Trash2 } from "lucide-svelte";
-  import { inputClass, buttonVariants } from "../lib/ui";
+  import { inputClass } from "../lib/ui";
 
   let {
     entries,
@@ -38,7 +38,10 @@
 
   let filtered = $derived(
     entries.filter((e) => {
-      if (filterTool && !e.tool_name.toLowerCase().includes(filterTool.toLowerCase()))
+      if (
+        filterTool &&
+        !e.tool_name.toLowerCase().includes(filterTool.toLowerCase())
+      )
         return false;
       if (filterStatus === "error" && !e.is_error) return false;
       if (filterStatus === "success" && e.is_error) return false;

@@ -1,7 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { connect, onMessage, send } from "./lib/ws";
-  import type { ToolDef, TimelineEntry, ServerMessage, ServerInfo } from "./lib/types";
+  import type {
+    ToolDef,
+    TimelineEntry,
+    ServerMessage,
+    ServerInfo,
+  } from "./lib/types";
   import { describeReloadDiff } from "./lib/diff";
   import ToolList from "./components/ToolList.svelte";
   import ToolDetail from "./components/ToolDetail.svelte";
@@ -14,7 +19,7 @@
     Activity,
     Command,
     LayoutTemplate,
-    Server
+    Server,
   } from "lucide-svelte";
 
   let tools = $state<ToolDef[]>([]);
@@ -58,7 +63,10 @@
           else selectedTool = null;
         }
         if (!wasConnected) {
-          showToast(`Connected — ${tools.length} tool${tools.length !== 1 ? "s" : ""} available`, "success");
+          showToast(
+            `Connected — ${tools.length} tool${tools.length !== 1 ? "s" : ""} available`,
+            "success",
+          );
         }
         break;
       }
@@ -145,32 +153,51 @@
   });
 </script>
 
-<div class="flex h-screen w-full flex-col bg-background text-foreground transition-colors duration-200">
+<div
+  class="flex h-screen w-full flex-col bg-background text-foreground transition-colors duration-200"
+>
   <!-- Top Navigation Bar -->
-  <header class="flex h-14 items-center justify-between border-b bg-secondary/30 px-4 backdrop-blur-sm">
+  <header
+    class="flex h-14 items-center justify-between border-b bg-secondary/30 px-4 backdrop-blur-sm"
+  >
     <div class="flex items-center gap-3">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+      <div
+        class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"
+      >
         <Command size={18} />
       </div>
       <div class="flex flex-col leading-none">
         <h1 class="text-sm font-bold tracking-tight">mcpplay</h1>
-        <span class="text-[10px] text-muted-foreground">{serverInfo?.version ? `v${serverInfo.version}` : ''}</span>
+        <span class="text-[10px] text-muted-foreground"
+          >{serverInfo?.version ? `v${serverInfo.version}` : ""}</span
+        >
       </div>
-      <div class="ml-4 flex items-center gap-2 rounded-full border bg-background px-2.5 py-0.5 text-xs font-medium">
-        <div class={`h-2 w-2 rounded-full ${wsConnected ? 'bg-green-500 animate-pulse-dot' : 'bg-red-500'}`}></div>
-        <span class={wsConnected ? 'text-foreground' : 'text-muted-foreground'}>
+      <div
+        class="ml-4 flex items-center gap-2 rounded-full border bg-background px-2.5 py-0.5 text-xs font-medium"
+      >
+        <div
+          class={`h-2 w-2 rounded-full ${wsConnected ? "bg-green-500 animate-pulse-dot" : "bg-red-500"}`}
+        ></div>
+        <span class={wsConnected ? "text-foreground" : "text-muted-foreground"}>
           {wsConnected ? "Connected" : "Disconnected"}
         </span>
       </div>
 
       <!-- Feature 6: Server info -->
       {#if serverInfo}
-        <div class="ml-2 flex items-center gap-1.5 rounded-full border bg-background px-2.5 py-0.5 text-xs text-muted-foreground">
+        <div
+          class="ml-2 flex items-center gap-1.5 rounded-full border bg-background px-2.5 py-0.5 text-xs text-muted-foreground"
+        >
           <Server size={12} />
-          <span class="max-w-[200px] truncate font-mono" title={serverInfo.server_name}>
+          <span
+            class="max-w-[200px] truncate font-mono"
+            title={serverInfo.server_name}
+          >
             {serverInfo.server_name}
           </span>
-          <span class="rounded bg-muted px-1 py-0.5 text-[10px] uppercase">{serverInfo.transport}</span>
+          <span class="rounded bg-muted px-1 py-0.5 text-[10px] uppercase"
+            >{serverInfo.transport}</span
+          >
         </div>
       {/if}
     </div>
@@ -193,7 +220,12 @@
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar -->
     <aside class="w-64 border-r bg-muted/20 flex flex-col">
-      <ToolList {tools} {selectedTool} {executionCounts} onSelect={handleSelectTool} />
+      <ToolList
+        {tools}
+        {selectedTool}
+        {executionCounts}
+        onSelect={handleSelectTool}
+      />
     </aside>
 
     <!-- Main Content Area -->
@@ -201,19 +233,21 @@
       <!-- Tabs / View Switcher -->
       <div class="flex items-center border-b px-4">
         <button
-          class={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors hover:text-foreground ${activeTab === 'tool' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground'}`}
+          class={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors hover:text-foreground ${activeTab === "tool" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}
           onclick={() => (activeTab = "tool")}
         >
           <LayoutTemplate size={16} />
           Tool Console
         </button>
         <button
-          class={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors hover:text-foreground ${activeTab === 'timeline' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground'}`}
+          class={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors hover:text-foreground ${activeTab === "timeline" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}
           onclick={() => (activeTab = "timeline")}
         >
           <Activity size={16} />
           Timeline
-          <span class="ml-1 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+          <span
+            class="ml-1 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground"
+          >
             {timelineEntries.length}
           </span>
         </button>
@@ -228,12 +262,19 @@
             </div>
           {:else}
             <div class="mx-auto max-w-5xl">
-              <div class="flex h-[400px] flex-col items-center justify-center rounded-xl border border-dashed text-center text-muted-foreground">
+              <div
+                class="flex h-[400px] flex-col items-center justify-center rounded-xl border border-dashed text-center text-muted-foreground"
+              >
                 <div class="mb-4 rounded-full bg-muted p-4">
                   <Zap size={32} class="opacity-50" />
                 </div>
-                <h3 class="text-lg font-medium text-foreground">No tool selected</h3>
-                <p class="max-w-sm text-sm">Select a tool from the sidebar to verify its schema and execute it.</p>
+                <h3 class="text-lg font-medium text-foreground">
+                  No tool selected
+                </h3>
+                <p class="max-w-sm text-sm">
+                  Select a tool from the sidebar to verify its schema and
+                  execute it.
+                </p>
               </div>
             </div>
           {/if}
@@ -252,7 +293,6 @@
       </div>
     </main>
   </div>
-
 </div>
 
 {#if toastMessage}

@@ -13,7 +13,7 @@
     Copy,
     Code,
     Terminal,
-    FileCode
+    FileCode,
   } from "lucide-svelte";
 
   let {
@@ -33,12 +33,18 @@
   let showSchema = $state(false);
 
   // Look up the tool schema from current tools list
-  let toolSchema = $derived(tools.find((t) => t.name === entry.tool_name)?.inputSchema);
+  let toolSchema = $derived(
+    tools.find((t) => t.name === entry.tool_name)?.inputSchema,
+  );
 
   let time = $derived.by(() => {
     try {
       const d = new Date(entry.timestamp);
-      return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      return d.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
     } catch {
       return entry.timestamp;
     }
@@ -90,7 +96,9 @@
   }
 </script>
 
-<div class={`group overflow-hidden rounded-lg border transition-all ${entry.is_error ? 'border-red-200 bg-red-50/30 dark:border-red-900/50 dark:bg-red-950/10' : 'border-border bg-card'}`}>
+<div
+  class={`group overflow-hidden rounded-lg border transition-all ${entry.is_error ? "border-red-200 bg-red-50/30 dark:border-red-900/50 dark:bg-red-950/10" : "border-border bg-card"}`}
+>
   <button
     class="flex w-full items-center gap-3 p-3 text-left transition-colors hover:bg-muted/50"
     onclick={() => (expanded = !expanded)}
@@ -116,7 +124,9 @@
     </span>
 
     <div class="flex items-center gap-3 text-xs text-muted-foreground">
-      <div class="flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 font-mono">
+      <div
+        class="flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 font-mono"
+      >
         <Clock size={12} />
         {entry.latency_ms}ms
       </div>
@@ -130,17 +140,33 @@
     <div class="border-t bg-muted/20 p-4">
       <div class="mb-6 grid gap-6 md:grid-cols-2">
         <div class="space-y-2">
-          <h4 class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Input Arguments</h4>
+          <h4
+            class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+          >
+            Input Arguments
+          </h4>
           <div class="rounded-md border bg-muted/50 p-3 font-mono text-xs">
-            <pre class="overflow-x-auto whitespace-pre-wrap break-words">{JSON.stringify(entry.input_params, null, 2)}</pre>
+            <pre
+              class="overflow-x-auto whitespace-pre-wrap break-words">{JSON.stringify(
+                entry.input_params,
+                null,
+                2,
+              )}</pre>
           </div>
         </div>
 
         {#if entry.error_message}
-           <div class="space-y-2">
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-destructive">Error</h4>
-            <div class="rounded-md border border-destructive/20 bg-destructive/10 p-3 font-mono text-xs text-destructive">
-              <pre class="overflow-x-auto whitespace-pre-wrap break-words">{entry.error_message}</pre>
+          <div class="space-y-2">
+            <h4
+              class="text-xs font-semibold uppercase tracking-wider text-destructive"
+            >
+              Error
+            </h4>
+            <div
+              class="rounded-md border border-destructive/20 bg-destructive/10 p-3 font-mono text-xs text-destructive"
+            >
+              <pre
+                class="overflow-x-auto whitespace-pre-wrap break-words">{entry.error_message}</pre>
             </div>
           </div>
         {/if}
@@ -170,12 +196,21 @@
       {/if}
 
       <div class="space-y-2">
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Result</h4>
+        <h4
+          class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+        >
+          Result
+        </h4>
         {#if entry.output?.content}
           <ResultView content={entry.output.content} isError={entry.is_error} />
         {:else}
           <div class="rounded-md border bg-muted/50 p-3 font-mono text-xs">
-            <pre class="overflow-x-auto whitespace-pre-wrap break-words">{JSON.stringify(entry.output, null, 2)}</pre>
+            <pre
+              class="overflow-x-auto whitespace-pre-wrap break-words">{JSON.stringify(
+                entry.output,
+                null,
+                2,
+              )}</pre>
           </div>
         {/if}
       </div>

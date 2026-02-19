@@ -8,7 +8,10 @@ class CloseEvent extends Event {
   code: number;
   reason: string;
   wasClean: boolean;
-  constructor(type: string, init?: { code?: number; reason?: string; wasClean?: boolean }) {
+  constructor(
+    type: string,
+    init?: { code?: number; reason?: string; wasClean?: boolean },
+  ) {
     super(type);
     this.code = init?.code ?? 1000;
     this.reason = init?.reason ?? "";
@@ -54,7 +57,9 @@ class MockWebSocket {
 
   /** Simulate the server sending a message. */
   simulateMessage(data: unknown) {
-    this.onmessage?.(new MessageEvent("message", { data: JSON.stringify(data) }));
+    this.onmessage?.(
+      new MessageEvent("message", { data: JSON.stringify(data) }),
+    );
   }
 
   /** Simulate connection close. */
@@ -210,14 +215,19 @@ describe("ws", () => {
 
       unsub();
 
-      MockWebSocket.instances[0].simulateMessage({ type: "error", message: "x" });
+      MockWebSocket.instances[0].simulateMessage({
+        type: "error",
+        message: "x",
+      });
       expect(handler).not.toHaveBeenCalled();
     });
 
     it("does not crash on invalid JSON", async () => {
       const { connect, onMessage } = await freshImport();
       const handler = vi.fn();
-      const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+      const consoleSpy = vi
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
       onMessage(handler);
       connect();
       MockWebSocket.instances[0].simulateOpen();

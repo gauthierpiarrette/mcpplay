@@ -76,10 +76,7 @@ describe("describeReloadDiff", () => {
   });
 
   it("reports multiple counts correctly", () => {
-    const result = describeReloadDiff(
-      [],
-      [tool("a"), tool("b"), tool("c")],
-    );
+    const result = describeReloadDiff([], [tool("a"), tool("b"), tool("c")]);
     expect(result).toBe("Server reloaded: 3 added");
   });
 });

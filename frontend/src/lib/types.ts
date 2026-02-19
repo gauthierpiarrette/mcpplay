@@ -69,7 +69,13 @@ export type ServerMessage =
     }
   | { type: "timeline"; entries: TimelineEntry[]; total_count: number }
   | { type: "reload"; status: "reloading" | "ready"; tools?: ToolDef[] }
-  | { type: "server_info"; command: string; server_name: string; transport: string; version: string }
+  | {
+      type: "server_info";
+      command: string;
+      server_name: string;
+      transport: string;
+      version: string;
+    }
   | { type: "error"; message: string };
 
 // Client -> Server messages
