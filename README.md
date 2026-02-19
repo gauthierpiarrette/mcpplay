@@ -23,9 +23,7 @@
   <strong>⚡ Run your MCP server → instantly get an interactive UI.</strong>
 </p>
 
-<p align="center">
-  <video src="https://github.com/user-attachments/assets/fb948227-ccc9-4645-b3c8-48ab846f3eda" alt="mcpplay in action" width="800" autoplay loop muted playsinline></video>
-</p>
+https://github.com/user-attachments/assets/ecaa69d9-b441-44d8-b709-93b168398858
 
 **mcpplay** gives you a browser-based playground for [MCP](https://modelcontextprotocol.io)-compliant servers. One command, and you get auto-generated forms, live results, and a full execution timeline.
 
