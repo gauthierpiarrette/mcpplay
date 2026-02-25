@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "lucide-svelte": "^0.570.0",
-    "marked": "^15.0.12"
+    "marked": "^17.0.3"
   }
 }
