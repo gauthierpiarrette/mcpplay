@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/gauthierpiarrette-mcpplay-badge.png)](https://mseep.ai/app/gauthierpiarrette-mcpplay)
+
 <p align="center">
   <img src="docs/logo.svg" alt="mcpplay" width="80" />
 </p>
